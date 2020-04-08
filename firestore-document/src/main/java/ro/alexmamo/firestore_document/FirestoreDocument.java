@@ -22,7 +22,7 @@ import static ro.alexmamo.firestore_document.Constants.TAG;
 import static ro.alexmamo.firestore_document.Constants.TIMESTAMP_SIZE;
 
 @SuppressWarnings({"ConstantConditions", "unchecked"})
-class FirestoreDocument {
+public class FirestoreDocument {
     private static FirestoreDocument instance;
 
     synchronized static FirestoreDocument getInstance() {

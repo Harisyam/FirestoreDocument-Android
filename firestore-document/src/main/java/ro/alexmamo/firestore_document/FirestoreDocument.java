@@ -25,7 +25,7 @@ import static ro.alexmamo.firestore_document.Constants.TIMESTAMP_SIZE;
 public class FirestoreDocument {
     private static FirestoreDocument instance;
 
-    synchronized static FirestoreDocument getInstance() {
+    public synchronized static FirestoreDocument getInstance() {
         if (instance == null) {
             instance = new FirestoreDocument();
         }

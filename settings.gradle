@@ -1,0 +1,3 @@
+rootProject.name='FirestoreDocumentSize'
+include ':app'
+include ':firestore-document'

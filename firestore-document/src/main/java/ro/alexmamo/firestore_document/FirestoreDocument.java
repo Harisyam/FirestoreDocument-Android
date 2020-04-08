@@ -32,7 +32,7 @@ public class FirestoreDocument {
         return instance;
     }
 
-    int getSize(DocumentSnapshot document) {
+    public int getSize(DocumentSnapshot document) {
         int documentSize = 0;
 
         String documentPath = document.getReference().getPath();

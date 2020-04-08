@@ -24,9 +24,9 @@ public class MainActivity extends AppCompatActivity {
             if (task.isSuccessful()) {
                 DocumentSnapshot document = task.getResult();
                 if (document.exists()) {
-//                    FirestoreDocument firestoreDocument = FirestoreDocument.getInstance();
-//                    int documentSize = firestoreDocument.getSize(document);
-//                    Log.d(TAG, "documentSize: " + documentSize);
+                    //FirestoreDocument firestoreDocument = FirestoreDocument.getInstance();
+                    //int documentSize = firestoreDocument.getSize(document);
+                    //Log.d(TAG, "documentSize: " + documentSize);
                 }
             }
         });

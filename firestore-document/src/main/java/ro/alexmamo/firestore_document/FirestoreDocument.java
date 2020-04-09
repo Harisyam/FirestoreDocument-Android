@@ -25,6 +25,8 @@ import static ro.alexmamo.firestore_document.Constants.TIMESTAMP_SIZE;
 public class FirestoreDocument {
     private static FirestoreDocument instance;
 
+    private FirestoreDocument() {}
+
     public synchronized static FirestoreDocument getInstance() {
         if (instance == null) {
             instance = new FirestoreDocument();
@@ -38,12 +40,10 @@ public class FirestoreDocument {
         String documentPath = document.getReference().getPath();
         int documentNameSize = getDocumentNameSize(documentPath);
         documentSize += documentNameSize;
-        Log.d(TAG, "documentNameSize: " + documentNameSize);
 
         Map<String, Object> data = document.getData();
         int documentContentSize = getDocumentContentSize(data);
         documentSize += documentContentSize;
-        Log.d(TAG, "documentContentSize: " + documentContentSize);
 
         return documentSize;
     }

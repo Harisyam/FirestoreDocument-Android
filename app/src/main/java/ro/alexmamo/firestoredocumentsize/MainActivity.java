@@ -9,10 +9,12 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import static ro.alexmamo.firestoredocumentsize.Constants.*;
+import ro.alexmamo.firestore_document.FirestoreDocument;
 
 @SuppressWarnings({"ConstantConditions"})
 public class MainActivity extends AppCompatActivity {
+    private static final String TAG = "FirestoreDocumentTag";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,9 +26,9 @@ public class MainActivity extends AppCompatActivity {
             if (task.isSuccessful()) {
                 DocumentSnapshot document = task.getResult();
                 if (document.exists()) {
-                    //FirestoreDocument firestoreDocument = FirestoreDocument.getInstance();
-                    //int documentSize = firestoreDocument.getSize(document);
-                    //Log.d(TAG, "documentSize: " + documentSize);
+                    FirestoreDocument firestoreDocument = FirestoreDocument.getInstance();
+                    int documentSize = firestoreDocument.getSize(document);
+                    Log.d(TAG, "documentSize: " + documentSize);
                 }
             }
         });

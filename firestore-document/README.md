@@ -44,7 +44,6 @@ Here is the enttre code getting the size of a document:
         if (task.isSuccessful()) {
             DocumentSnapshot document = task.getResult();
             if (document.exists()) {
-                FirestoreDocument firestoreDocument = FirestoreDocument.getInstance();
                 int documentSize = firestoreDocument.getSize(document);
                 Log.d("TAG", "documentSize: " + documentSize);
             }

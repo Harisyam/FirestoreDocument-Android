@@ -22,3 +22,21 @@ And the latest dependency into your build.gradle (app) file.
     implementation 'com.github.alexmamo:FirestoreDocument-Android:0.1.5'
     
 In your Android project create a new instance of `FirestoreDocument` class:
+
+    FirestoreDocument firestoreDocument = FirestoreDocument.getInstance();
+    
+Inside the class, there is a `getSize()` method which will return the size of document when you pass an `DocumentSnapshot` object.
+
+    int documentSize = firestoreDocument.getSize(documentSnapshot);
+    
+Using the following reference:
+
+    FirebaseFirestore rootRef = FirebaseFirestore.getInstance();
+    DocumentReference myTaskIdRef = rootRef.collection("users").document("jeff").collection("tasks").document("my_task_id");
+    
+As is specified in the offcial documentation regarding [the storage size of Firestore document](https://firebase.google.com/docs/firestore/storage-size), we'll find a document that look like this:
+
+
+    
+Here is the entre code getting the size of a document:
+

@@ -6,6 +6,8 @@ FirestoreDocument-Android it's an Android library for getting the size of a Clou
 
 ## Getting Started
 
+To be able to use this library, you need to add [JitPack.io](https://jitpack.io/) repository into your build.gradle (Poject) file.
+
     allprojects {
         repositories {
             ...

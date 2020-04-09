@@ -25,7 +25,7 @@ In your Android project, simply create a new instance of `FirestoreDocument` cla
 
     FirestoreDocument firestoreDocument = FirestoreDocument.getInstance();
     
-Inside the class, there is a `getSize()` method which will return the size of document, when you pass an `DocumentSnapshot` object as an argument.
+Inside this class, there is a `getSize()` method which will return the size, when you pass an `DocumentSnapshot` object as an argument.
 
     int documentSize = firestoreDocument.getSize(documentSnapshot);
     
@@ -34,7 +34,7 @@ Using the following reference:
     FirebaseFirestore rootRef = FirebaseFirestore.getInstance();
     DocumentReference myTaskIdRef = rootRef.collection("users").document("jeff").collection("tasks").document("my_task_id");
     
-As is specified in the offcial documentation regarding [the storage size of Firestore document](https://firebase.google.com/docs/firestore/storage-size), we can create a document with the following structure:
+As is specified in the offcial documentation regarding [the storage size of a Firestore document](https://firebase.google.com/docs/firestore/storage-size), we can create a document with the following structure:
 
 ![Document Structure](doc_structure.png)
 
@@ -50,10 +50,10 @@ Here is the entire code getting the size of a document:
         }
     });
     
-The result will be:
+The result in the logcat will be:
 
     147
     
-The library as well with queries. So instead of passing a `documentSnapshot`, you can also pass a `queryDocumentSnapshot`.
+The library works as well with queries. So instead of passing a `documentSnapshot`, you can also pass a `queryDocumentSnapshot` object as an argument:
 
     int documentSize = firestoreDocument.getSize(queryDocumentSnapshot);

@@ -34,9 +34,9 @@ Using the following reference:
     FirebaseFirestore rootRef = FirebaseFirestore.getInstance();
     DocumentReference myTaskIdRef = rootRef.collection("users").document("jeff").collection("tasks").document("my_task_id");
     
-As is specified in the offcial documentation regarding [the storage size of Firestore document](https://firebase.google.com/docs/firestore/storage-size), we'll find a document that look like this:
+As is specified in the offcial documentation regarding [the storage size of Firestore document](https://firebase.google.com/docs/firestore/storage-size), we can create a document with the following structure:
 
-
+https://i.ibb.co/J5qJH8K/1.png
     
 Here is the entre code getting the size of a document:
 

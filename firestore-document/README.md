@@ -2,7 +2,7 @@
 
 ## Introduction
 
-FirestoreDocument-Android it's an Android library for **getting the size of Cloud Firestore documents**. The use of this library will help you prevent your Firestore writes to fail. You'll always be able to check against the maximum of [**1 MiB** (1,048,576 bytes) quota](https://firebase.google.com/docs/firestore/quotas#collections_documents_and_fields).
+FirestoreDocument-Android it's an Android library for **getting the size of Cloud Firestore documents**. The use of this library will help you prevent your Firestore writes to fail. You'll always be able to check against [the maximum of **1 MiB** (1,048,576 bytes) quota](https://firebase.google.com/docs/firestore/quotas#collections_documents_and_fields).
 
 ## Getting Started
 

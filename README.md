@@ -12,6 +12,6 @@ In order to make it work, you to create a [Firebase project](https://firebase.go
 
 ## Run the App
 
-The result is the size of a document that is set to a `TextView`:
+When opening the app, the result that you'll see is the size of a document that is set to a `TextView`:
 
 ![App Screenshot](app_screenshot.png).

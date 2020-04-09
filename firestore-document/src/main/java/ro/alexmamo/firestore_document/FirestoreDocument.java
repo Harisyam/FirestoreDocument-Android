@@ -1,7 +1,5 @@
 package ro.alexmamo.firestore_document;
 
-import android.util.Log;
-
 import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -18,7 +16,6 @@ import static ro.alexmamo.firestore_document.Constants.GEO_POINT_SIZE;
 import static ro.alexmamo.firestore_document.Constants.NULL_SIZE;
 import static ro.alexmamo.firestore_document.Constants.NUMBER_SIZE;
 import static ro.alexmamo.firestore_document.Constants.REGEX;
-import static ro.alexmamo.firestore_document.Constants.TAG;
 import static ro.alexmamo.firestore_document.Constants.TIMESTAMP_SIZE;
 
 @SuppressWarnings({"ConstantConditions", "unchecked"})
@@ -40,12 +37,10 @@ public class FirestoreDocument {
         String documentPath = document.getReference().getPath();
         int documentNameSize = getDocumentNameSize(documentPath);
         documentSize += documentNameSize;
-        Log.d(TAG, "documentNameSize: " + documentNameSize);
 
         Map<String, Object> data = document.getData();
         int documentContentSize = getDocumentContentSize(data);
         documentSize += documentContentSize;
-        Log.d(TAG, "documentContentSize: " + documentContentSize);
 
         return documentSize;
     }

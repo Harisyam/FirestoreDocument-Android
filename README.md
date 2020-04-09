@@ -15,3 +15,5 @@ In order to make it work, you need to create a [Firebase project](https://fireba
 When opening the app, the result that you'll see is the size of `my_task_id` document that is set to a `TextView`:
 
 ![App Screenshot](app_screenshot.png).
+
+Note: All documents size returned by this library are in bytes, the example above shows 147 bytes

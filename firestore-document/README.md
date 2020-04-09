@@ -38,7 +38,7 @@ As is specified in the offcial documentation regarding [the storage size of a Fi
 
 ![Document Structure](doc_structure.png)
 
-Here is the entire code getting the size of a document:
+Here is the entire code for getting the size of a document:
 
     myTaskIdRef.get().addOnCompleteListener(task -> {
         if (task.isSuccessful()) {

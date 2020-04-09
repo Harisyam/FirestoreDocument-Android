@@ -6,4 +6,11 @@ FirestoreDocument-Android it's an Android library for getting the size of a Clou
 
 ## Getting Started
 
-
+    allprojects {
+        repositories {
+            ...
+            maven {
+                url 'https://jitpack.io'
+            }
+        }
+    }

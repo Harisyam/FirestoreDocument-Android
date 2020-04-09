@@ -52,7 +52,7 @@ To get the size of the document, only the following lines of code are needed:
     
 The result in the logcat will be:
 
-    147
+    documentSize: 147
     
 The library works as well with queries. So instead of passing a `documentSnapshot`, you can also pass a `queryDocumentSnapshot` object as an argument:
 

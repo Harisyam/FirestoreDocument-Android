@@ -36,7 +36,7 @@ Using the following reference:
     
 As is specified in the offcial documentation regarding [the storage size of a Firestore document](https://firebase.google.com/docs/firestore/storage-size), we can create a document with the following structure:
 
-![Document Structure](doc_structure.png)
+![Firestore Document Structure](doc_structure.png)
 
 To get the size of the document, only the following lines of code are needed:
 

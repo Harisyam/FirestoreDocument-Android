@@ -11,6 +11,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import ro.alexmamo.firestore_document.FirestoreDocument;
 
+
 @SuppressWarnings({"ConstantConditions"})
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "FirestoreDocumentTag";

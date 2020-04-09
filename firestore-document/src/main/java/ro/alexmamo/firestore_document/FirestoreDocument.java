@@ -40,10 +40,12 @@ public class FirestoreDocument {
         String documentPath = document.getReference().getPath();
         int documentNameSize = getDocumentNameSize(documentPath);
         documentSize += documentNameSize;
+        Log.d(TAG, "documentNameSize: " + documentNameSize);
 
         Map<String, Object> data = document.getData();
         int documentContentSize = getDocumentContentSize(data);
         documentSize += documentContentSize;
+        Log.d(TAG, "documentContentSize: " + documentContentSize);
 
         return documentSize;
     }

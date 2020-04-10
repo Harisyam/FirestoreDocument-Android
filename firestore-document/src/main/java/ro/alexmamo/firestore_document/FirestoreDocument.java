@@ -179,4 +179,8 @@ public class FirestoreDocument{
     public double getDocumentSizeInKilobytes(DocumentSnapshot document){
         return (double) getSize(document)/ONE_KILOBYTE;
     }
+
+    public int getNumberOfProperties(DocumentSnapshot document) {
+        return document.getData().size();
+    }
 }

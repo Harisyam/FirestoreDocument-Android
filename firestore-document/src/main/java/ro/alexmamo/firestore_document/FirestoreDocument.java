@@ -172,12 +172,12 @@ public class FirestoreDocument{
         return getDocumentNameSize(documentPath);
     }
 
-    public boolean isDocumentSizeLessThanOneMebibyte(DocumentSnapshot document){
+    public boolean isDocumentSizeLessThanOneMebibyte(DocumentSnapshot document) {
         return getSize(document) < ONE_MEBIBYTE;
     }
 
-    public double getDocumentSizeInKilobytes(DocumentSnapshot document){
-        return (double) getSize(document)/ONE_KILOBYTE;
+    public double getDocumentSizeInKilobytes(DocumentSnapshot document) {
+        return (double) getSize(document) / ONE_KILOBYTE;
     }
 
     public int getNumberOfProperties(DocumentSnapshot document) {

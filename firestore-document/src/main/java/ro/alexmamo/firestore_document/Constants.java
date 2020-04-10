@@ -11,4 +11,6 @@ public interface Constants {
     int BOOLEAN_SIZE = 1;
     int TIMESTAMP_SIZE = 8;
     int GEO_POINT_SIZE = 16;
+    int ONE_MEGA_BYTE = 1000000;
+    int ONE_KILO_BYTE = 1000;
 }

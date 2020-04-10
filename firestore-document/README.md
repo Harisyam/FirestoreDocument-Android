@@ -57,3 +57,5 @@ The result in the logcat will be:
 The library works as well with queries. So instead of passing a `documentSnapshot`, you can also pass a `queryDocumentSnapshot` object as an argument:
 
     int documentSize = firestoreDocument.getSize(queryDocumentSnapshot);
+    
+Note: All documents size returned by this library are in bytes, the example above shows 147 bytes

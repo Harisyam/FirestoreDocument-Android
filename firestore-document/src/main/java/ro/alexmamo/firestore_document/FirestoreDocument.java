@@ -5,6 +5,7 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.GeoPoint;
 
+import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Map;
 
@@ -19,9 +20,9 @@ import static ro.alexmamo.firestore_document.Constants.REGEX;
 import static ro.alexmamo.firestore_document.Constants.TIMESTAMP_SIZE;
 
 @SuppressWarnings({"ConstantConditions", "unchecked"})
-public class FirestoreDocument {
-    private static FirestoreDocument instance;
+public class FirestoreDocument{
 
+    private static FirestoreDocument instance;
     private FirestoreDocument() {}
 
     public synchronized static FirestoreDocument getInstance() {
@@ -43,6 +44,14 @@ public class FirestoreDocument {
         documentSize += documentContentSize;
 
         return documentSize;
+    }
+
+    public Boolean checkIfDocumentIsLessThan1MB(DocumentSnapshot document){
+        return getSize(document) < Constants.ONE_MEGA_BYTE;
+    }
+
+    public Double getDocumentInKiloBytes(DocumentSnapshot document){
+        return (getSize(document)/(double)Constants.ONE_KILO_BYTE);
     }
 
     private int getDocumentNameSize(String path) {

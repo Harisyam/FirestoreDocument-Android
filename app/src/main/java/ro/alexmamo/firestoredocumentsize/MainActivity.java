@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
                 if (document.exists()) {
                     FirestoreDocument firestoreDocument = FirestoreDocument.getInstance();
                     int documentSize = firestoreDocument.getSize(document);
-                    String textToDisplay = "Size: " + documentSize+ "bytes";
+                    String textToDisplay = "Size: " + documentSize + " bytes";
                     docSizeTextView.setText(textToDisplay);
                 }
             }

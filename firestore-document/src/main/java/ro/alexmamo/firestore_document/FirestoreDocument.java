@@ -5,10 +5,10 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.GeoPoint;
 
-import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Map;
 
+import static ro.alexmamo.firestore_document.Constants.*;
 import static ro.alexmamo.firestore_document.Constants.ADDITIONAL_BYTE;
 import static ro.alexmamo.firestore_document.Constants.BOOLEAN_SIZE;
 import static ro.alexmamo.firestore_document.Constants.DOCUMENT_CONTENT_ADDITIONAL_BYTES;
@@ -21,8 +21,8 @@ import static ro.alexmamo.firestore_document.Constants.TIMESTAMP_SIZE;
 
 @SuppressWarnings({"ConstantConditions", "unchecked"})
 public class FirestoreDocument{
-
     private static FirestoreDocument instance;
+
     private FirestoreDocument() {}
 
     public synchronized static FirestoreDocument getInstance() {
@@ -44,14 +44,6 @@ public class FirestoreDocument{
         documentSize += documentContentSize;
 
         return documentSize;
-    }
-
-    public Boolean checkIfDocumentIsLessThan1MB(DocumentSnapshot document){
-        return getSize(document) < Constants.ONE_MEGA_BYTE;
-    }
-
-    public Double getDocumentInKiloBytes(DocumentSnapshot document){
-        return (getSize(document)/(double)Constants.ONE_KILO_BYTE);
     }
 
     private int getDocumentNameSize(String path) {
@@ -178,5 +170,13 @@ public class FirestoreDocument{
 
     private int getDocumentReferenceValueSize(String documentPath) {
         return getDocumentNameSize(documentPath);
+    }
+
+    public boolean isDocumentSizeLessThanOneMebibyte(DocumentSnapshot document){
+        return getSize(document) < ONE_MEBIBYTE;
+    }
+
+    public double getDocumentSizeInKilobytes(DocumentSnapshot document){
+        return (double) getSize(document)/ONE_KILOBYTE;
     }
 }

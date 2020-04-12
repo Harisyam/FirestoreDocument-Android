@@ -1,10 +1,10 @@
 package ro.alexmamo.firestore_document;
 
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.Timestamp;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.GeoPoint;
+import com.google.firebase.firestore.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -172,10 +172,37 @@ public class FirestoreDocument{
         return getDocumentNameSize(documentPath);
     }
 
+    /**
+     * @param collectionTask The task returned by a collection query. Eg: myRef.collection("params").get().addOnCompleteListener( task -> {...}
+     * @param bytes The size of the documents we want to fetch in this query.
+     * @return List of documentSnapshot containing documents less than the input bytes given.
+     *
+     * Important: This query does not save reads of documents, it filters documents which size is less than the bytes given.
+     */
+    public List<DocumentSnapshot> getDocumentsLessThan(Task<QuerySnapshot> collectionTask,int bytes){
+        List<DocumentSnapshot> docList = new ArrayList();
+
+        for(DocumentSnapshot document : collectionTask.getResult().getDocuments()){
+            if(getSize(document) < bytes){
+                docList.add(document);
+            }
+        }
+
+        return docList;
+    }
+
+    /**
+     * @param document The document that we want to know if its less than 1Mebibyte
+     * @return True if the document is less than 1048576 bytes else false.
+     */
     public boolean isDocumentSizeLessThanOneMebibyte(DocumentSnapshot document) {
         return getSize(document) < ONE_MEBIBYTE;
     }
 
+    /**
+     * @param document The document we want to convert its size to Kbytes
+     * @return size in Kbytes
+     */
     public double getDocumentSizeInKilobytes(DocumentSnapshot document) {
         return (double) getSize(document) / ONE_KILOBYTE;
     }

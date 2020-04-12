@@ -64,7 +64,7 @@ public class FirestoreDocument{
      * @param bytes The size of the documents we want to fetch in this query.
      * @return List of documentSnapshot containing documents greater than the input bytes given.
      *
-     * Important: This query does not save reads of documents, it filters documents which size is less than the bytes given.
+     * Important: This query does not save reads of documents, it filters documents which size is greater than the bytes given.
      */
     public List<DocumentSnapshot> getDocumentsGreaterThan(Task<QuerySnapshot> collectionTask, int bytes){
         List<DocumentSnapshot> docList = new ArrayList();
@@ -81,7 +81,7 @@ public class FirestoreDocument{
      * @param bytes The size of the documents we want to fetch in this query.
      * @return List of documentSnapshot containing documents less and equal than the input bytes given.
      *
-     * Important: This query does not save reads of documents, it filters documents which size is less than the bytes given.
+     * Important: This query does not save reads of documents, it filters documents which size is less than equal to the bytes given.
      */
     public List<DocumentSnapshot> getDocumentsLessEqualThan(Task<QuerySnapshot> collectionTask, int bytes){
         List<DocumentSnapshot> docList = new ArrayList();
@@ -98,7 +98,7 @@ public class FirestoreDocument{
      * @param bytes The size of the documents we want to fetch in this query.
      * @return List of documentSnapshot containing documents greater and equal than the input bytes given.
      *
-     * Important: This query does not save reads of documents, it filters documents which size is less than the bytes given.
+     * Important: This query does not save reads of documents, it filters documents which size is greater than equal to the bytes given.
      */
     public List<DocumentSnapshot> getDocumentsGreaterEqualThan(Task<QuerySnapshot> collectionTask, int bytes){
         List<DocumentSnapshot> docList = new ArrayList();
@@ -115,7 +115,7 @@ public class FirestoreDocument{
      * @param bytes The size of the documents we want to fetch in this query.
      * @return List of documentSnapshot containing documents equal to the input bytes given.
      *
-     * Important: This query does not save reads of documents, it filters documents which size is less than the bytes given.
+     * Important: This query does not save reads of documents, it filters documents which size is equal to the bytes given.
      */
     public List<DocumentSnapshot> getDocumentsEqualTo(Task<QuerySnapshot> collectionTask, int bytes){
         List<DocumentSnapshot> docList = new ArrayList();

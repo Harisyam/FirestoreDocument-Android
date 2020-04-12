@@ -1,23 +1,15 @@
 package ro.alexmamo.firestore_document;
 
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.Timestamp;
-import com.google.firebase.firestore.*;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import static ro.alexmamo.firestore_document.Constants.*;
-import static ro.alexmamo.firestore_document.Constants.ADDITIONAL_BYTE;
-import static ro.alexmamo.firestore_document.Constants.BOOLEAN_SIZE;
-import static ro.alexmamo.firestore_document.Constants.DOCUMENT_CONTENT_ADDITIONAL_BYTES;
-import static ro.alexmamo.firestore_document.Constants.DOCUMENT_NAME_ADDITIONAL_BYTES;
-import static ro.alexmamo.firestore_document.Constants.GEO_POINT_SIZE;
-import static ro.alexmamo.firestore_document.Constants.NULL_SIZE;
-import static ro.alexmamo.firestore_document.Constants.NUMBER_SIZE;
-import static ro.alexmamo.firestore_document.Constants.REGEX;
-import static ro.alexmamo.firestore_document.Constants.TIMESTAMP_SIZE;
+import static ro.alexmamo.firestore_document.Constants.ONE_KILOBYTE;
+import static ro.alexmamo.firestore_document.Constants.ONE_MEBIBYTE;
 
 @SuppressWarnings({"ConstantConditions", "unchecked"})
 public class FirestoreDocument{
@@ -33,161 +25,37 @@ public class FirestoreDocument{
     }
 
     public int getSize(DocumentSnapshot document) {
-        int documentSize = 0;
+        int documentNameSize = getDocumentNameSize(document);
+        int mapContentSize = getMapContentSize(document);
+        return documentNameSize + mapContentSize;
+    }
 
+    private int getDocumentNameSize(DocumentSnapshot document) {
         String documentPath = document.getReference().getPath();
-        int documentNameSize = getDocumentNameSize(documentPath);
-        documentSize += documentNameSize;
+        DocumentName documentName = new DocumentName();
+        return documentName.getSize(documentPath);
+    }
 
+    private int getMapContentSize(DocumentSnapshot document) {
         Map<String, Object> data = document.getData();
-        int documentContentSize = getDocumentContentSize(data);
-        documentSize += documentContentSize;
-
-        return documentSize;
-    }
-
-    private int getDocumentNameSize(String path) {
-        int documentNameSize = 0;
-        String[] names = path.split(REGEX);
-        for (String name : names) {
-            documentNameSize += name.length() + ADDITIONAL_BYTE;
-        }
-        return documentNameSize + DOCUMENT_NAME_ADDITIONAL_BYTES;
-    }
-
-    private int getDocumentContentSize(Map<String, Object> data) {
-        int totalSize = 0;
-        for (Map.Entry<String, Object> entry : data.entrySet()) {
-            int entrySize = getEntrySize(entry);
-            totalSize += entrySize;
-        }
-        return totalSize + DOCUMENT_CONTENT_ADDITIONAL_BYTES;
-    }
-
-    private int getEntrySize(Map.Entry<String, Object> entry) {
-        String entryName = entry.getKey();
-        int entryNameSize = getEntryNameSize(entryName);
-
-        Object entryValue = entry.getValue();
-        int entryValueSize = getEntryValueSize(entryValue);
-
-        return entryNameSize + entryValueSize;
-    }
-
-    private int getEntryNameSize(String propertyName) {
-        return propertyName.length() + ADDITIONAL_BYTE;
-    }
-
-    private int getEntryValueSize(Object propertyValue) {
-        if (propertyValue == null) {
-            return getNullValueSize();
-        }
-
-        int propertyValueSize = 0;
-        if (propertyValue instanceof String) {
-            String value = (String) propertyValue;
-            propertyValueSize = getStringValueSize(value);
-        } else if (propertyValue instanceof Long || propertyValue instanceof Double) {
-            propertyValueSize = getNumberValueSize();
-        } else if (propertyValue instanceof Boolean){
-            propertyValueSize = getBooleanValueSize();
-        } else if (propertyValue instanceof Map) {
-            Map<String, Object> map = (Map<String, Object>) propertyValue;
-            propertyValueSize = getMapValueSize(map);
-        } else if (propertyValue instanceof List) {
-            List list = ((List) propertyValue);
-            propertyValueSize = getArrayValueSize(list);
-        } else if (propertyValue instanceof Timestamp) {
-            propertyValueSize = getTimestampValueSize();
-        } else if (propertyValue instanceof GeoPoint) {
-            propertyValueSize = getGeoPointValueSize();
-        } else if (propertyValue instanceof DocumentReference) {
-            String documentPath = ((DocumentReference) propertyValue).getPath();
-            propertyValueSize = getDocumentReferenceValueSize(documentPath);
-        }
-        return propertyValueSize;
-    }
-
-    private int getNullValueSize() {
-        return NULL_SIZE;
-    }
-
-    private int getStringValueSize(String value) {
-        return value.length() + ADDITIONAL_BYTE;
-    }
-
-    private int getNumberValueSize() {
-        return NUMBER_SIZE;
-    }
-
-    private int getBooleanValueSize() {
-        return BOOLEAN_SIZE;
-    }
-
-    private int getMapValueSize(Map<String, Object> map) {
-        int mapSize = 0;
-        for (Map.Entry<String, Object> entry : map.entrySet()) {
-            int entrySize = getEntrySize(entry);
-            mapSize += entrySize;
-        }
-        return mapSize;
-    }
-
-    private int getArrayValueSize(List list) {
-        int arrayValueSize = 0;
-        for (Object obj : list) {
-            if (obj == null) {
-                arrayValueSize += getNullValueSize();
-            } else if (obj instanceof String) {
-                String s = (String) obj;
-                arrayValueSize += getStringValueSize(s);
-            } else if (obj instanceof Long || obj instanceof Double) {
-                arrayValueSize += getNumberValueSize();
-            } else if (obj instanceof Boolean){
-                arrayValueSize += getBooleanValueSize();
-            } else if (obj instanceof Map) {
-                Map<String, Object> map = (Map<String, Object>) obj;
-                arrayValueSize += getMapValueSize(map);
-            } else if (obj instanceof Timestamp) {
-                arrayValueSize += getTimestampValueSize();
-            } else if (obj instanceof GeoPoint) {
-                arrayValueSize += getGeoPointValueSize();
-            } else if (obj instanceof DocumentReference) {
-                String documentPath = ((DocumentReference) obj).getPath();
-                arrayValueSize += getDocumentReferenceValueSize(documentPath);
-            }
-        }
-        return arrayValueSize;
-    }
-
-    private int getTimestampValueSize() {
-        return TIMESTAMP_SIZE;
-    }
-
-    private int getGeoPointValueSize() {
-        return GEO_POINT_SIZE;
-    }
-
-    private int getDocumentReferenceValueSize(String documentPath) {
-        return getDocumentNameSize(documentPath);
+        MapContent mapContent = new MapContent();
+        return mapContent.getSize(data);
     }
 
     /**
-     * @param collectionTask The task returned by a collection query. Eg: myRef.collection("params").get().addOnCompleteListener( task -> {...}
+     * @param collectionTask The task returned by a collection query. Eg: myRef.collection("params").get().addOnCompleteListener( task -> {...} )
      * @param bytes The size of the documents we want to fetch in this query.
      * @return List of documentSnapshot containing documents less than the input bytes given.
      *
      * Important: This query does not save reads of documents, it filters documents which size is less than the bytes given.
      */
-    public List<DocumentSnapshot> getDocumentsLessThan(Task<QuerySnapshot> collectionTask,int bytes){
+    public List<DocumentSnapshot> getDocumentsLessThan(Task<QuerySnapshot> collectionTask, int bytes){
         List<DocumentSnapshot> docList = new ArrayList();
-
         for(DocumentSnapshot document : collectionTask.getResult().getDocuments()){
             if(getSize(document) < bytes){
                 docList.add(document);
             }
         }
-
         return docList;
     }
 
@@ -201,7 +69,7 @@ public class FirestoreDocument{
 
     /**
      * @param document The document we want to convert its size to Kbytes
-     * @return size in Kbytes
+     * @return size in Kilobytes
      */
     public double getDocumentSizeInKilobytes(DocumentSnapshot document) {
         return (double) getSize(document) / ONE_KILOBYTE;

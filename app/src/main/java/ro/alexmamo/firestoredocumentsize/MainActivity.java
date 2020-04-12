@@ -12,21 +12,26 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.List;
+
 import ro.alexmamo.firestore_document.FirestoreDocument;
+
+import static ro.alexmamo.firestore_document.Constants.*;
 
 @SuppressWarnings({"ConstantConditions"})
 public class MainActivity extends AppCompatActivity {
     private TextView docSizeTextView;
+    private FirestoreDocument firestoreDocument = FirestoreDocument.getInstance();
     private FirebaseFirestore rootRef = FirebaseFirestore.getInstance();
     private DocumentReference myTaskIdRef = rootRef.collection("users").document("jeff").collection("tasks").document("my_task_id");
-    private CollectionReference myRef = rootRef.collection("params");
+    private CollectionReference productsRef = rootRef.collection("products");
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initDocSizeTextView();
         displayDocSize();
-        getAllDocumentsLessThan();
+        getAllDocumentsLessThan(150);
     }
 
     private void initDocSizeTextView() {
@@ -38,7 +43,6 @@ public class MainActivity extends AppCompatActivity {
             if (task.isSuccessful()) {
                 DocumentSnapshot document = task.getResult();
                 if (document.exists()) {
-                    FirestoreDocument firestoreDocument = FirestoreDocument.getInstance();
                     int documentSize = firestoreDocument.getSize(document);
                     String textToDisplay = "Size: " + documentSize + " bytes";
                     docSizeTextView.setText(textToDisplay);
@@ -47,13 +51,11 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-
-    private void getAllDocumentsLessThan(){
-        myRef.get().addOnCompleteListener(task -> {
+    private void getAllDocumentsLessThan(int bytes) {
+        productsRef.get().addOnCompleteListener(task -> {
             if(task.isSuccessful()){
-                FirestoreDocument firestoreDocument = FirestoreDocument.getInstance();
-                List<DocumentSnapshot> docSnapList = firestoreDocument.getDocumentsLessThan(task, 70);
-                Log.d("ListSize: ",""+docSnapList.size());
+                List<DocumentSnapshot> docSnapList = firestoreDocument.getDocumentsLessThan(task, bytes);
+                Log.d(TAG, "docSnapList: " + docSnapList.size());
             }
         });
     }

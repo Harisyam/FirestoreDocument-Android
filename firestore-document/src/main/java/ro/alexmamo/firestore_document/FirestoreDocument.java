@@ -43,7 +43,7 @@ public class FirestoreDocument{
     }
 
     /**
-     * @param collectionTask The task returned by a collection query. Eg: myRef.collection("params").get().addOnCompleteListener( task -> {...} )
+     * @param collectionTask The task returned by a collection query. Eg: productsRef.collection("products").get().addOnCompleteListener( task -> {...} )
      * @param bytes The size of the documents we want to fetch in this query.
      * @return List of documentSnapshot containing documents less than the input bytes given.
      *
@@ -60,15 +60,15 @@ public class FirestoreDocument{
     }
 
     /**
-     * @param document The document that we want to know if its less than 1Mebibyte
-     * @return True if the document is less than 1048576 bytes else false.
+     * @param document The document that we want to know if its less than 1 Mebibyte
+     * @return True if the document is less than 1,048,576 bytes else false.
      */
     public boolean isDocumentSizeLessThanOneMebibyte(DocumentSnapshot document) {
         return getSize(document) < ONE_MEBIBYTE;
     }
 
     /**
-     * @param document The document we want to convert its size to Kbytes
+     * @param document The document we want to convert its size to Kilobytes
      * @return size in Kilobytes
      */
     public double getDocumentSizeInKilobytes(DocumentSnapshot document) {

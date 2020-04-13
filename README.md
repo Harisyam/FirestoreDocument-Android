@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This is an Android example app for how to use the [FirestoreDocument-Android library](https://github.com/alexmamo/FirestoreDocument-Android/blob/master/firestore-document/).
+This is an Android example app for how to use the [FirestoreDocument-Android library](https://github.com/alexmamo/FirestoreDocument-Android/blob/master/firestore-document/). This library answers the question "How to get the size of a Cloud Firestore document"?
 
 ## Getting Started
 

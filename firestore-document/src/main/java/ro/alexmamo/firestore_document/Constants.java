@@ -3,6 +3,11 @@ package ro.alexmamo.firestore_document;
 public interface Constants {
     String TAG = "FirestoreDocumentTag";
     String REGEX = "/";
+    String EQUAL_TO = "==";
+    String GREATER_THAN = ">";
+    String GREATER_THAN_EQUAL_TO = ">=";
+    String LESS_THAN_EQUAL_TO = "<=";
+    String LESS_THAN = "<";
     int ADDITIONAL_BYTE = 1;
     int DOCUMENT_NAME_ADDITIONAL_BYTES = 16;
     int DOCUMENT_CONTENT_ADDITIONAL_BYTES = 32;

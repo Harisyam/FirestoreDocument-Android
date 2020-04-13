@@ -4,14 +4,18 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import static ro.alexmamo.firestore_document.Constants.ONE_KILOBYTE;
-import static ro.alexmamo.firestore_document.Constants.ONE_MEBIBYTE;
+import static ro.alexmamo.firestore_document.utils.Constants.EQUAL_TO;
+import static ro.alexmamo.firestore_document.utils.Constants.GREATER_THAN;
+import static ro.alexmamo.firestore_document.utils.Constants.GREATER_THAN_OR_EQUAL_TO;
+import static ro.alexmamo.firestore_document.utils.Constants.LESS_THAN;
+import static ro.alexmamo.firestore_document.utils.Constants.LESS_THAN_OR_EQUAL_TO;
+import static ro.alexmamo.firestore_document.utils.Constants.ONE_KILOBYTE;
+import static ro.alexmamo.firestore_document.utils.Constants.ONE_MEBIBYTE;
 
-@SuppressWarnings({"ConstantConditions", "unchecked"})
+@SuppressWarnings({"ConstantConditions"})
 public class FirestoreDocument{
     private static FirestoreDocument instance;
 
@@ -51,7 +55,7 @@ public class FirestoreDocument{
      */
     public List<DocumentSnapshot> getDocumentsLessThan(Task<QuerySnapshot> collectionTask, int bytes){
         DocumentList documentList = new DocumentList();
-        return documentList.getDocumentsListByQuery(collectionTask,bytes,Constants.LESS_THAN);
+        return documentList.getDocumentsListByQuery(collectionTask, bytes, LESS_THAN);
     }
 
     /**
@@ -63,7 +67,7 @@ public class FirestoreDocument{
      */
     public List<DocumentSnapshot> getDocumentsGreaterThan(Task<QuerySnapshot> collectionTask, int bytes){
         DocumentList documentList = new DocumentList();
-        return documentList.getDocumentsListByQuery(collectionTask,bytes,Constants.GREATER_THAN);
+        return documentList.getDocumentsListByQuery(collectionTask, bytes, GREATER_THAN);
     }
 
     /**
@@ -75,7 +79,7 @@ public class FirestoreDocument{
      */
     public List<DocumentSnapshot> getDocumentsLessEqualThan(Task<QuerySnapshot> collectionTask, int bytes){
         DocumentList documentList = new DocumentList();
-        return documentList.getDocumentsListByQuery(collectionTask,bytes,Constants.LESS_THAN_EQUAL_TO);
+        return documentList.getDocumentsListByQuery(collectionTask, bytes, LESS_THAN_OR_EQUAL_TO);
     }
 
     /**
@@ -87,7 +91,7 @@ public class FirestoreDocument{
      */
     public List<DocumentSnapshot> getDocumentsGreaterEqualThan(Task<QuerySnapshot> collectionTask, int bytes){
         DocumentList documentList = new DocumentList();
-        return documentList.getDocumentsListByQuery(collectionTask,bytes,Constants.GREATER_THAN_EQUAL_TO);
+        return documentList.getDocumentsListByQuery(collectionTask, bytes, GREATER_THAN_OR_EQUAL_TO);
     }
 
     /**
@@ -99,7 +103,7 @@ public class FirestoreDocument{
      */
     public List<DocumentSnapshot> getDocumentsEqualTo(Task<QuerySnapshot> collectionTask, int bytes){
         DocumentList documentList = new DocumentList();
-        return documentList.getDocumentsListByQuery(collectionTask,bytes,Constants.EQUAL_TO);
+        return documentList.getDocumentsListByQuery(collectionTask, bytes, EQUAL_TO);
     }
 
     /**

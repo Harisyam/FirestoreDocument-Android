@@ -13,4 +13,9 @@ public interface Constants {
     int GEO_POINT_SIZE = 16;
     int ONE_MEBIBYTE = 1_048_576;
     int ONE_KILOBYTE = 1_024;
+    String EQUAL_TO = "==";
+    String GREATER_THAN = ">";
+    String GREATER_THAN_OR_EQUAL_TO = ">=";
+    String LESS_THAN = "<";
+    String LESS_THAN_OR_EQUAL_TO = "<=";
 }

@@ -15,7 +15,7 @@ import java.util.List;
 
 import ro.alexmamo.firestore_document.FirestoreDocument;
 
-import static ro.alexmamo.firestore_document.Constants.*;
+import static ro.alexmamo.firestore_document.utils.Constants.TAG;
 
 @SuppressWarnings({"ConstantConditions"})
 public class MainActivity extends AppCompatActivity {

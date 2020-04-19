@@ -5,6 +5,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 import java.util.List;
+import ro.alexmamo.firestore_document.utils.Constants;
 
 @SuppressWarnings({"ConstantConditions", "unchecked"})
 class DocumentList {
@@ -23,7 +24,7 @@ class DocumentList {
         }
         break;
 
-      case Constants.GREATER_THAN_EQUAL_TO:
+      case Constants.GREATER_THAN_OR_EQUAL_TO:
 
         for (DocumentSnapshot document : collectionTask.getResult().getDocuments()) {
           if (firestoreDocument.getSize(document) >= bytes) {
@@ -50,7 +51,7 @@ class DocumentList {
         }
         break;
 
-      case Constants.LESS_THAN_EQUAL_TO:
+      case Constants.LESS_THAN_OR_EQUAL_TO:
         for (DocumentSnapshot document : collectionTask.getResult().getDocuments()) {
           if (firestoreDocument.getSize(document) <= bytes) {
             docList.add(document);

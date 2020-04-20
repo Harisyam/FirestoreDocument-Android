@@ -12,6 +12,7 @@ public interface Constants {
     int TIMESTAMP_SIZE = 8;
     int GEO_POINT_SIZE = 16;
     int ONE_MEBIBYTE = 1_048_576;
+    int HALF_MEBIBYTE = 524288;
     int ONE_KILOBYTE = 1_024;
     String EQUAL_TO = "==";
     String GREATER_THAN = ">";

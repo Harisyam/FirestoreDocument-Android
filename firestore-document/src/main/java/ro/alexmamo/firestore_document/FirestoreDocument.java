@@ -7,8 +7,8 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.List;
 import java.util.Map;
-import ro.alexmamo.firestore_document.utils.Constants;
 
+import static ro.alexmamo.firestore_document.utils.Constants.*;
 import static ro.alexmamo.firestore_document.utils.Constants.EQUAL_TO;
 import static ro.alexmamo.firestore_document.utils.Constants.GREATER_THAN;
 import static ro.alexmamo.firestore_document.utils.Constants.GREATER_THAN_OR_EQUAL_TO;
@@ -16,6 +16,7 @@ import static ro.alexmamo.firestore_document.utils.Constants.LESS_THAN;
 import static ro.alexmamo.firestore_document.utils.Constants.LESS_THAN_OR_EQUAL_TO;
 import static ro.alexmamo.firestore_document.utils.Constants.ONE_KILOBYTE;
 import static ro.alexmamo.firestore_document.utils.Constants.ONE_MEBIBYTE;
+import static ro.alexmamo.firestore_document.utils.Messages.HALF_SIZE_MESSAGE;
 
 @SuppressWarnings({"ConstantConditions"})
 public class FirestoreDocument{
@@ -33,7 +34,7 @@ public class FirestoreDocument{
     public int getSize(DocumentSnapshot document) {
         int documentNameSize = getDocumentNameSize(document);
         int mapContentSize = getMapContentSize(document);
-        shouldReturnWarningMessage(documentNameSize + mapContentSize);
+        displayWarningMessage(documentNameSize + mapContentSize);
         return documentNameSize + mapContentSize;
     }
 
@@ -52,9 +53,9 @@ public class FirestoreDocument{
     /**
      * @param docSize The document size to check against the maximum quota, this will fire from getSize(DocumentSnapshot document) if the size of the current document is near or about to hit the limit by the Firebase quota
      */
-    private void shouldReturnWarningMessage(int docSize){
-        if(docSize >= Constants.HALF_MEBIBYTE && docSize < ONE_MEBIBYTE){
-            Log.w(Constants.TAG,"Your document size is half way up to the maximum size allowed by Firebase Quota, please consider checking your document to reduce size if needed.");
+    private void displayWarningMessage(int docSize) {
+        if(docSize >= HALF_MEBIBYTE && docSize < ONE_MEBIBYTE){
+            Log.d(TAG, HALF_SIZE_MESSAGE);
         }
     }
 
